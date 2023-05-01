@@ -19,3 +19,10 @@ BIOSの設定項目は、CPUのFlexible Launch Control (FLC)に関するもの�
 ## Enable writes to SGXLEPUBKEYHASH[3:0] from OS/SW
 SGX LE Public Key Hash(0~3)の値を、ソフトウェアが編集する事を許可するか否かを決定する。例えば、SGXドライバーが値を書き換える事がある。
 
+# 設定例
+
+## 任意のEnclaveを利用できるようにする。
+Enable writes to SGXLEPUBKEYHASH[3:0] from OS/SWをEnable(Yes)にする。(SGX LE Public Key Hash(0~3)は設定不要)
+
+## 独自のLEで起動制御を行う。
+Enable writes to SGXLEPUBKEYHASH[3:0] from OS/SWをDisable(No)にする。SGX LE Public Key Hash(0~3)に独自LEのMRSIGNERを書き込む。
