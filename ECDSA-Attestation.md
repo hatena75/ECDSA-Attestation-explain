@@ -121,5 +121,16 @@ ECDSA Attestationにおいて、Quoteを検証するために利用できるEncl
 11. 問題がなければECDSA Attestationが完了し、セキュアチャネルが確立される。
 
 ## Quoteの検証
+アテステーションで検証されるQuoteの構成は、以下の図のようになっている。
 
+<img src ="https://github.com/hatena75/ECDSA-Attestation-explain/blob/master/img/Quote.svg" width="500px">
+
+Intelは、以下の5つの項目の検証を行えば良いとしている。
+- QuoteからIntel CAまでの署名及び証明書のトラストチェーン(Intel CA-PCK-Attestation Key-Quote)は改ざんされていないか。
+- 失効された署名鍵がトラストチェーンの途中に含まれていないか。
+- QE3がIntelが作成したものであり最新版か。
+- 証明書に示されたTCBとQuoteのTCBは一致しているか。
+- 検証対象のEnclaveがQuoteに示されたものと同様か。(VerifierではなくRelying Partyが確認する事もある)
+
+なお、CPUが正規品である事、及びPCEが適切で最新である事は、トラストチェーンの検証により証明される。PCKはRPKとPCEに固有であり、その証明書はRPKを所有しているIntelのみが発行できる。このため、PCK証明書での署名検証によって、プラットフォームでCPUの正規品である事、及び適切なバージョンのPCEが使われている事を確認できる。
 
