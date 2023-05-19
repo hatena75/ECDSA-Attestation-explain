@@ -1,5 +1,12 @@
 # 概要
-ECDSA Attestationは、従来のEPID Attestationとは異なるSGXのRemote Attestationである。サードパーティがプロビジョニングとアテステーションプロセスを実行可能であり、Intelに権限が集中しないよう設計されているのが特徴である。元々は、以下のようなEPID Attestationが不都合なユースケースを想定して開発された。
+SGXのRemote Attestationは、クラウドプラットフォーム上のSGXのハードウェアTCBとソフトウェアTCBを遠隔から評価できる機能である。ECDSA(Elliptic Curve Digital Signature Algorithm) Attestationは、SGXのRemote Attestation方式の一つである。サードパーティがプロビジョニングとアテステーションの環境を構築するため、Intelに権限が集中しないのが特徴である。
+
+ECDSA Attestationが利用可能になるためには、特定の鍵の生成等を予め行っておく必要がある(プロビジョニング)。アテステーションでは、プラットフォームが検証のための証拠を生成し、それをユーザーが外部サービスを使って検証する。
+
+# ユースケース
+従来、SGXのRemote Attestationには、EPID(Enhanced Privacy ID) Attestationが使われてきた。この方式では、Intelのサービスがプロビジョニングとアテステーションの両方を担っているが、EPIDが匿名性を有しているため、Intelはプライバシーを侵害できないとしている。
+
+ECDSA Attestationは元々、以下のようなEPID Attestationが不都合なユースケースを想定して開発された。
 
 1. ネットワークの大部分を、インターネットベースのサービスにアクセスできない環境(大規模イントラネット)で運用している事業者。 
 
@@ -96,7 +103,23 @@ ECDSA Attestationにおいて、Quoteを検証するために利用できるEncl
 
 このフローにより、Attestation Key CertからPCK証明書、Intel CAのルート証明書までのトラストチェーンが確立され、実行時にはQuoteに対するAttestation Keyの署名からIntel CAまでのトラストチェーンを検証できるようになる。これはプラットフォーム内で完結しており、Intelの専用サービスとの通信を行うEPID Attestationのプロビジョニングとは異なる。
 
-# アテステーションプロセス
+# アテステーション
+アテステーションによって、クラウドプラットフォーム上のSGXのハードウェアTCBとソフトウェアTCBを評価できる。具体的には、CPUが正規品であること、SGXのセキュリティバージョンが一定以上であること、及び検証対象のEnclaveのMRSIGNER及びMRENCLAVEを確認できる。アテステーションフローを以下に示す。
 
+<img src ="https://github.com/hatena75/ECDSA-Attestation-explain/blob/master/img/Attestation.svg" width="600px">
+
+1. ApplicationはRelying Partyからアテステーションの要求を受信する。
+2. ApplicationはEnclaveに対して、自身についてのQuoteを生成するよう依頼する。
+3. EnclaveはQE3とLocal Attestationを行った後、EREPORT命令でQE3のMRENCLAVEを入力としたReportを生成し、それをQE3に送信する。
+4. QE3はReportを検証した後、ReportとAttestation Key Certを合わせた構造体にAttestation Keyで署名することで、Quoteを生成する。
+5. QuoteはApplicationを介してRelying Partyに送信される。
+6. Relying Partyは受け取ったQuoteを検証するため、Verifierにこれを送信する。
+7. Verifierは、Quoteの検証に必要な情報をPCCSから取得する。
+8. Verifierは取得した情報を利用して、Quoteを検証する。
+9. 検証結果をRelying Partyに返信する。
+10. Relying Partyは、検証結果を基にさらにRA対象EnclaveのMRENCLAVE等を確認出来る。
+11. 問題がなければECDSA Attestationが完了し、セキュアチャネルが確立される。
+
+## Quoteの検証
 
 
