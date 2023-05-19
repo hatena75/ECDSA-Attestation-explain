@@ -1,5 +1,5 @@
 # 概要
-ECDSA Attestationは、従来のEPID Attestationとは異なるSGXのRemote Attestationです。サードパーティがプロビジョニングとアテステーションプロセスを実行可能であり、Intelに権限が集中しないよう設計されているのが特徴です。元々は、以下のようなEPID Attestationが不都合なユースケースを想定して開発されました。
+ECDSA Attestationは、従来のEPID Attestationとは異なるSGXのRemote Attestationである。サードパーティがプロビジョニングとアテステーションプロセスを実行可能であり、Intelに権限が集中しないよう設計されているのが特徴である。元々は、以下のようなEPID Attestationが不都合なユースケースを想定して開発された。
 
 1. ネットワークの大部分を、インターネットベースのサービスにアクセスできない環境(大規模イントラネット)で運用している事業者。 
 
@@ -9,7 +9,7 @@ ECDSA Attestationは、従来のEPID Attestationとは異なるSGXのRemote Atte
 
 4. EPIDが提供するプライバシー特性と相反する要求がある環境。
 
-しかし、最新のSGXではEPIDが廃止されており、全てのケースでECDSA Attestationを使うことになります。
+しかし、最新のSGXではEPIDが廃止されているため、これら以外のケースでもECDSA Attestationを使うことになる。
 
 # Enclave Measurement
 Enclaveの識別には2つのハッシュ値が用いられる。これらは鍵の生成やQuoteの検証項目として利用される。  
@@ -85,7 +85,15 @@ ECDSA Attestationにおいて、Quoteを検証するために利用できるEncl
 サードパーティが定めたホワイトリストやルールに基づいてEnclaveの起動可否を決めるためのEnclaveである。ref-LEはIntel以外のサードパーティが署名して利用する事ができ、その内容も変更する事ができる。
 
 # プロビジョニング
+プロビジョニングでは、アテステーションに使う鍵と証明書、つまりトラストチェーンの一部を構築する。これにはPCEとQE3を利用する。プロビジョニングフローを以下に示す。
 
+<img src ="../github解説/img/Provisioning.svg" width="400px">
 
+1. QE3はAttestation Keyを生成する。
+2. QE3はPCEとLocal Attestationを行った後、PCEのMRENCLAVEを入力としてReportを生成し、それとAttestation Keyを合わせてPCEに送信する。
+3. PCEは受信したReportを検証した後、それらにPCKで署名する。この作成された構造体はAttestation Key Certと呼ばれ、Attestation Keyの証明書の役割を果たす。
+4. PCEはAttestation Key CertをQE3に返送する。QE3はこれをEnclave内で保持する。
+
+このフローにより、Attestation Key CertからPCK証明書、Intel CAのルート証明書までのトラストチェーンが確立され、実行時にはQuoteに対するAttestation Keyの署名からIntel CAまでのトラストチェーンを検証できるようになる。これはプラットフォーム内で完結しており、Intelの専用サービスと通信を行うEPID Attestationのプロビジョニングとは異なる。
 
 # アテステーションプロセス
