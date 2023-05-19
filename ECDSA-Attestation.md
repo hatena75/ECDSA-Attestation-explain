@@ -87,13 +87,16 @@ ECDSA Attestationにおいて、Quoteを検証するために利用できるEncl
 # プロビジョニング
 プロビジョニングでは、アテステーションに使う鍵と証明書、つまりトラストチェーンの一部を構築する。これにはPCEとQE3を利用する。プロビジョニングフローを以下に示す。
 
-<img src ="../github解説/img/Provisioning.svg" width="400px">
+<img src ="https://github.com/hatena75/ECDSA-Attestation-explain/blob/master/img/Provisioning.svg" width="400px">
 
 1. QE3はAttestation Keyを生成する。
 2. QE3はPCEとLocal Attestationを行った後、PCEのMRENCLAVEを入力としてReportを生成し、それとAttestation Keyを合わせてPCEに送信する。
 3. PCEは受信したReportを検証した後、それらにPCKで署名する。この作成された構造体はAttestation Key Certと呼ばれ、Attestation Keyの証明書の役割を果たす。
 4. PCEはAttestation Key CertをQE3に返送する。QE3はこれをEnclave内で保持する。
 
-このフローにより、Attestation Key CertからPCK証明書、Intel CAのルート証明書までのトラストチェーンが確立され、実行時にはQuoteに対するAttestation Keyの署名からIntel CAまでのトラストチェーンを検証できるようになる。これはプラットフォーム内で完結しており、Intelの専用サービスと通信を行うEPID Attestationのプロビジョニングとは異なる。
+このフローにより、Attestation Key CertからPCK証明書、Intel CAのルート証明書までのトラストチェーンが確立され、実行時にはQuoteに対するAttestation Keyの署名からIntel CAまでのトラストチェーンを検証できるようになる。これはプラットフォーム内で完結しており、Intelの専用サービスとの通信を行うEPID Attestationのプロビジョニングとは異なる。
 
 # アテステーションプロセス
+
+
+
