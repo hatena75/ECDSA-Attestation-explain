@@ -149,4 +149,10 @@ PCCSは、Intelが配布するデータをキャッシュするためのサー�
 - QE3のアイデンティティ情報
 - QvEのアイデンティティ情報
 
+### 参考
+1. Scarlata, V., et al. Supporting third party attestation for Intel® SGX with Intel® data center attestation primitives. White paper(2018)., https://www.intel.com/content/dam/develop/external/us/en/documents/intel-sgx-support-for-third-party-attestation-801017.pdf
+2. DCAP公式ドキュメント, https://download.01.org/intel-sgx/latest/dcap-latest/linux/docs/
+3. Intel® SGX DCAP: A Quick Install Guide ,https://www.intel.com/content/www/us/en/developer/articles/guide/intel-software-guard-extensions-data-center-attestation-primitives-quick-install-guide.html
+4. Code Sample: Intel® SGX Remote Attestation End-to-End Example, https://www.intel.com/content/www/us/en/developer/articles/code-sample/software-guard-extensions-remote-attestation-end-to-end-example.html
+5. SGX101 Attestation, https://sgx101.gitbook.io/sgx101/sgx-bootstrap/attestation
 
