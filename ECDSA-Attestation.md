@@ -134,3 +134,15 @@ Intelは、以下の5つの項目の検証を行えば良いとしている。
 
 なお、CPUが正規品である事、及びPCEが適切で最新である事は、トラストチェーンの検証により証明される。PCKはRPKとPCEに固有であり、その証明書はRPKを所有しているIntelのみが発行できる。このため、PCK証明書での署名検証によって、プラットフォームでCPUの正規品である事、及び適切なバージョンのPCEが使われている事を確認できる。
 
+検証に必要な情報は、PCCS(Provisioning Certificate Caching Service)から取得する。
+
+## PCCS(Provisioning Certificate Caching Service)
+PCCSは、Intelが配布するデータをキャッシュするためのサーバである。これはDCAPに含まれており、サードパーティが自由に構築できる。IntelはQuoteの検証に必要な情報を配布するためにPCS(Provisioning Certification Service)を運営し、APIを公開している。このAPIを利用して取得されたデータがPCCSにキャッシュされる。PCCSがキャッシュ及び配布するデータ(つまり、PCSから取得できるデータ)は以下のとおりである。
+
+- PCK証明書
+- PCKの失効リスト
+- 最低限必要なSGXのセキュリティバージョン
+- QE3のアイデンティティ情報
+- QvEのアイデンティティ情報
+
+
