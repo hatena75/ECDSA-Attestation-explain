@@ -3,6 +3,10 @@ SGXのRemote Attestationは、クラウドプラットフォーム上のSGXの�
 
 ECDSA Attestationが利用可能になるためには、特定の鍵の生成等を予め行っておく必要がある(プロビジョニング)。アテステーションでは、プラットフォームが検証のための証拠を生成し、それをユーザーが外部サービスを使って検証する。
 
+## DCAP(Data Center Attestation Primitives)
+DCAPは、IntelがECDSA Attestationの環境構築のために[GitHub](https://github.com/intel/SGXDataCenterAttestationPrimitives)で配布しているプログラム及びソフトウェアである。ただし、これは改造して使っても良いし、環境構築にこれを使わなくても良い。
+
+
 # ユースケース
 従来、SGXのRemote Attestationには、EPID(Enhanced Privacy ID) Attestationが使われてきた。この方式では、Intelのサービスがプロビジョニングとアテステーションの両方を担っているが、EPIDが匿名性を有しているため、Intelはプライバシーを侵害できないとしている。
 
