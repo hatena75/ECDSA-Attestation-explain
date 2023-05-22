@@ -102,14 +102,14 @@ ECDSA Attestationにおいて、Quoteを検証するために利用できるEncl
 # Quote
 Quoteは、プラットフォームが生成する評価のための証拠である。QuoteはQE3によって生成され、以下のような構造になっている。
 
-<img src ="../img/Quote.svg" width="60%">
+![Quote](../img/Quote.svg)
 
 Quoteには、Attestation KeyとPCKによる署名のチェーン、及びAttestation Key Certが含まれており、署名された内容にはQE3のReport及び検証対象のEnclaveのReportが含まれている。また、QE3とPCEのセキュリティバージョンナンバー(SVN)もヘッダーに含む。
 
 # プロビジョニング
 プロビジョニングでは、アテステーションに使う鍵と証明書、つまりトラストチェーンの一部を構築する。これにはPCEとQE3を利用する。プロビジョニングフローを以下に示す。
 
-![Attestation](../img/Provisioning.png)
+![Provisioning](../img/Provisioning.svg)
 
 1. QE3はAttestation Keyを生成する。
 
@@ -124,7 +124,7 @@ Quoteには、Attestation KeyとPCKによる署名のチェーン、及びAttest
 # アテステーション
 アテステーションによって、クラウドプラットフォーム上のSGXのハードウェアTCBとソフトウェアTCBを評価できる。具体的には、CPUが正規品であること、SGXのセキュリティバージョンが一定以上であること、及び検証対象のEnclaveのMRSIGNER及びMRENCLAVEを確認できる。アテステーションフローを以下に示す。
 
-![Attestation](../img/Attestation.svg =500x)
+![Attestation](../img/Attestation.svg)
 
 1. ApplicationはRelying Partyからアテステーションの要求を受信する。
 
