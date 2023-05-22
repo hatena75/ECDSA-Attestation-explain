@@ -176,9 +176,9 @@ PCCSは、Intelが配布するデータをキャッシュするためのサー�
 - QvEのアイデンティティ情報
 
 ### 参考
-1. Scarlata, V., et al. Supporting third party attestation for Intel® SGX with Intel® data center attestation primitives. White paper(2018)., https://www.intel.com/content/dam/develop/external/us/en/documents/intel-sgx-support-for-third-party-attestation-801017.pdf
-2. DCAP公式ドキュメント, https://download.01.org/intel-sgx/latest/dcap-latest/linux/docs/
-3. Intel® SGX DCAP: A Quick Install Guide ,https://www.intel.com/content/www/us/en/developer/articles/guide/intel-software-guard-extensions-data-center-attestation-primitives-quick-install-guide.html
-4. Code Sample: Intel® SGX Remote Attestation End-to-End Example, https://www.intel.com/content/www/us/en/developer/articles/code-sample/software-guard-extensions-remote-attestation-end-to-end-example.html
-5. Quote Generation, Verification, and Attestation with Intel® SGX DCAP, https://www.intel.com/content/www/us/en/developer/articles/technical/quote-verification-attestation-with-intel-sgx-dcap.html
-6. Sardar, M. U., et al. Formal foundations for intel SGX data center attestation primitives. ICFEM 2020, Proceedings 22 (pp. 268-283). ,https://dl.acm.org/doi/abs/10.1007/978-3-030-63406-3_16
+1. [Scarlata, V., et al. Supporting third party attestation for Intel® SGX with Intel® data center attestation primitives. White paper(2018).](https://www.intel.com/content/dam/develop/external/us/en/documents/intel-sgx-support-for-third-party-attestation-801017.pdf)
+2. [DCAP公式ドキュメント](https://download.01.org/intel-sgx/latest/dcap-latest/linux/docs/)
+3. [Intel® SGX DCAP: A Quick Install Guide](https://www.intel.com/content/www/us/en/developer/articles/guide/intel-software-guard-extensions-data-center-attestation-primitives-quick-install-guide.html)
+4. [Code Sample: Intel® SGX Remote Attestation End-to-End Example](https://www.intel.com/content/www/us/en/developer/articles/code-sample/software-guard-extensions-remote-attestation-end-to-end-example.html)
+5. [Quote Generation, Verification, and Attestation with Intel® SGX DCAP](https://www.intel.com/content/www/us/en/developer/articles/technical/quote-verification-attestation-with-intel-sgx-dcap.html)
+6. [Sardar, M. U., et al. Formal foundations for intel SGX data center attestation primitives. ICFEM 2020, Proceedings 22 (pp. 268-283)](https://dl.acm.org/doi/abs/10.1007/978-3-030-63406-3_16)
