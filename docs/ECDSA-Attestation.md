@@ -109,7 +109,7 @@ Quoteには、Attestation KeyとPCKによる署名のチェーン、及びAttest
 # プロビジョニング
 プロビジョニングでは、アテステーションに使う鍵と証明書、つまりトラストチェーンの一部を構築する。これにはPCEとQE3を利用する。プロビジョニングフローを以下に示す。
 
-<img src ="../img/Provisioning.svg" width="50%">
+<img src ="../img/Provisioning.svg" class="img-class">
 
 1. QE3はAttestation Keyを生成する。
 
