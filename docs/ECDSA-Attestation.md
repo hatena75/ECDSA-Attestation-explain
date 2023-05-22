@@ -124,7 +124,7 @@ Quoteには、Attestation KeyとPCKによる署名のチェーン、及びAttest
 # アテステーション
 アテステーションによって、クラウドプラットフォーム上のSGXのハードウェアTCBとソフトウェアTCBを評価できる。具体的には、CPUが正規品であること、SGXのセキュリティバージョンが一定以上であること、及び検証対象のEnclaveのMRSIGNER及びMRENCLAVEを確認できる。アテステーションフローを以下に示す。
 
-<img src ="../img/Attestation.svg" width="900px">
+<img src ="../img/Attestation.svg" width="1500px">
 
 1. ApplicationはRelying Partyからアテステーションの要求を受信する。
 
