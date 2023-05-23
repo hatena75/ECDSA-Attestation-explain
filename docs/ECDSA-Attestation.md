@@ -28,7 +28,7 @@ ECDSA Attestationは元々、以下のようなEPID Attestationが不都合な�
 EnclaveはSGXで保護された領域であり、この中で動くプログラムや処理されるデータの機密性と完全性は保証される。その内容は誰でも作成でき、共有ライブラリ(.so)としてロードされる。ただし、作成者を示すための署名が必須である。
 
 ## Enclave Measurement
-Enclaveの識別には2つのハッシュ値、MRENCLAVE、MRSIGNERが用いられる。これらは鍵の生成や証拠の検証に利用される。  
+Enclaveの識別には2つのハッシュ値、MRENCLAVE、MRSIGNERが用いられる。これらは鍵の生成や証拠の検証に利用される。
 
 ### MRENCLAVE
 Enclaveを一意に表す256bitハッシュ値である。Enclaveが初期化されてメモリ上に読み込まれると、SGXは以下を含む暗号化されたログを生成する。
@@ -40,6 +40,14 @@ Enclaveを一意に表す256bitハッシュ値である。Enclaveが初期化さ
 
 ### MRSIGNER
 Enclaveの署名に対応した公開鍵の256bitハッシュ値である。主にEnclaveの作成者を示す目的で使われる。MRENCLAVEよりも制約が弱くプラットフォームに値が依存しないため、デフォルトではこちらが検証で利用される。
+
+### MRENCLAVEとMRSIGNERの取得
+これらの値を調べるには、[SGXSDK](https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/linux-overview.html)に含まれるツールであるsgx_signを利用する。調べたいEnclaveファイルに対して`sgx_sign dump`コマンドでdumpファイルを作成することで、メタデータを取得できる。コマンドは例えば以下である。
+`/opt/intel/sgxsdk/bin/x64/sgx_sign dump -enclave enclave.signed.so -dumpfile dump.txt`
+
+dumpファイルには様々なメタデータが載っている。MRENCLAVEとMRSIGNERの項目は以下である。  
+MRENCLAVE： metadata->enclave_css.body.enclave_hash.m  
+MRSIGNER： mrsigner->value
 
 # ハードウェア鍵とソフトウェア鍵
 SGXではeFuseに焼き付けられた2種類のハードウェア鍵が利用され、これらがRoot of Trustになる。これらは主に派生鍵を生成するために利用され、eFuse外には出ない。
